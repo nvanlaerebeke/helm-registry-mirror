@@ -25,6 +25,13 @@ spec:
         ports:
         - containerPort: 5000
           name: registry-mirror
+        readinessProbe:
+          httpGet:
+            scheme: HTTP
+            path: /
+            port: 5000
+          initialDelaySeconds: 10
+          periodSeconds: 5        
         volumeMounts:
         - name: registry-storage-mirror
           mountPath: /var/lib/registry
